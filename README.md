@@ -35,6 +35,13 @@ examples/client/client -v 4 -l TLS_AES_256_GCM_SHA384 \
 
 # Generation of certificates
 
+## NIST Levels
+|--|--|
+|Dilithium NIST Level 2|algorithm mldsa44|
+|Dilithium NIST Level 3|algorithm mldsa65|
+|Dilithium NIST Level 5|algorithm mldsa87|
+
+## Using OpenSSL 3.5.0 (includes pqc, oqs not required anymore)
 ```
  openssl genpkey -algorithm mldsa44 -outform pem -out mldsa44_root_key.pem
  openssl genpkey -algorithm mldsa44 -outform pem -out mldsa44_entity_key.pem
@@ -46,7 +53,9 @@ examples/client/client -v 4 -l TLS_AES_256_GCM_SHA384 \
 
 note: repeat for mldsa65 and mldsa87
 
-Content of root.conf
+## Example of certificate configuration files
+
+### Content of root.conf
 ```
 [ req ]
 prompt                 = no
@@ -68,7 +77,7 @@ keyUsage               = critical, keyCertSign
 basicConstraints       = critical, CA:true
 ```
 
-Content of entity.conf
+### Content of an entity.conf
 ```
 [ req ]
 prompt                 = no

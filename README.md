@@ -36,6 +36,8 @@ examples/client/client -v 4 -l TLS_AES_256_GCM_SHA384 \
 # Generation of certificates
 
 ## NIST Levels
+
+|Levels|Algorithm at generation|
 |--|--|
 |Dilithium NIST Level 2|algorithm mldsa44|
 |Dilithium NIST Level 3|algorithm mldsa65|

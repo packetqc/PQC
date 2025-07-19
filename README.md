@@ -9,6 +9,30 @@ Post Quantum Crypto learning project
 4. Or, for openssl, OpenSSL version 3.5.0 adds native support
 5. For unix install of wolfssl, ./configure --enable-kyber --enable-dilithium 
 
+# Quick examples and tests
+For a quick start, you can run the client and server like this:
+```
+./examples/server/server -v 4 --pqc P521_ML_KEM_1024
+./examples/client/client -v 4 --pqc P521_ML_KEM_1024
+```
+
+Copy the certificates and keys into the certs directory of wolfssl. Now you
+    can run the server and client like this:
+
+```
+examples/server/server -v 4 -l TLS_AES_256_GCM_SHA384 \
+   -A certs/mldsa87_root_cert.pem \
+   -c certs/mldsa44_entity_cert.pem \
+   -k certs/mldsa44_entity_key.pem \
+   --pqc P521_ML_KEM_1024
+
+examples/client/client -v 4 -l TLS_AES_256_GCM_SHA384 \
+   -A certs/mldsa44_root_cert.pem \
+   -c certs/mldsa87_entity_cert.pem \
+   -k certs/mldsa87_entity_key.pem \
+   --pqc P521_ML_KEM_1024
+```      
+
 # Generation of certificates
 
 ```

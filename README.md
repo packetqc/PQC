@@ -9,7 +9,14 @@ Post Quantum Crypto learning project
 4. Or, for openssl, OpenSSL version 3.5.0 adds native support
 5. For unix install of wolfssl, ./configure --enable-kyber --enable-dilithium 
 
-# Quick examples and tests
+# STM32 Installation
+
+1. configure in STM32CubeMX
+2. copy and rename example settings file to user_settings.h
+3. add symbol WOLFSSL_USER_SETTINGS
+4. 
+
+# Quick examples and tests on unix
 For a quick start, you can run the client and server like this:
 ```
 ./examples/server/server -v 4 --pqc P521_ML_KEM_1024

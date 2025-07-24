@@ -7,7 +7,8 @@ Post Quantum Crypto learning project
 2. Openssl patched for OQS Provider (required to gen pqc certificate) [link](https://github.com/wolfSSL/osp/blob/master/oqs/README.md)
    Install wolfssl with pqc features [link](https://github.com/wolfSSL/wolfssl/blob/master/INSTALL)
 4. Or, for openssl, OpenSSL version 3.5.0 adds native support
-5. For unix install of wolfssl, ./configure --enable-kyber --enable-dilithium 
+5. For unix install of wolfssl, ./configure --enable-kyber --enable-dilithium
+6. Liboqs static library 
 
 # Procedure for embedded
 
@@ -20,9 +21,10 @@ Post Quantum Crypto learning project
 
 [link](https://github.com/open-quantum-safe/liboqs/wiki/Customizing-liboqs/55cfed39e1027dd1d32170e6b91f557571b18d9e) can be reffered for additional details on building the library
 
-1. download git liboqs
-2. cd liboqs
-3. git checkout 0.10.1 (or latest version compatible)
+1. apt install gcc-arm-none-eabi
+2. download git liboqs
+3. cd liboqs
+4. git checkout 0.10.1 (or latest version compatible)
 1. mkdir build
 2. cd build
 3. cmake .. -DOQS_BUILD_ONLY_LIB=ON
@@ -36,7 +38,7 @@ Could be optimized with <b>OQS_MINIMAL_BUILD="OQS_ENABLE_KEM_KYBER;OQS_ENABLE_KE
 1. configure in STM32CubeMX and generate code to STM32CubeIDE project
 2. copy and rename example settings file to user_settings.h
 3. add symbol WOLFSSL_USER_SETTINGS
-4. 
+4. add symbol WOLFSSL_STM32_CUBEMX
 
 # Linux
 

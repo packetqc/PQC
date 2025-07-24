@@ -9,14 +9,35 @@ Post Quantum Crypto learning project
 4. Or, for openssl, OpenSSL version 3.5.0 adds native support
 5. For unix install of wolfssl, ./configure --enable-kyber --enable-dilithium 
 
-# STM32 Installation
+# Procedure for embedded
 
-1. configure in STM32CubeMX
+1. create project with STM32CubeMX enabling wolfssl software package and PQC feature
+2. build and import liboqs to STM32CubeIDE
+
+# Embedded
+
+## LIBOQS build (liboqs is for test and dev only)
+
+[link](https://github.com/open-quantum-safe/liboqs/wiki/Customizing-liboqs/55cfed39e1027dd1d32170e6b91f557571b18d9e) can be reffered for additional details on building the library
+
+1. make dir build
+2. cd build
+3. cmake .. -DOQS_BUILD_ONLY_LIB=ON
+4. cmake .. -DOQS_BUILD_ONLY_LIB=ON;OQS_ENABLE_KEM_KYBER=ON;OQS_ENABLE_KEM_ML_KEM=ON;OQS_ENABLE_SIG_DILITHIUM=ON;OQS_ENABLE_SIG_ML_DSA=ON
+5. make
+
+Could be optimized with <b><OQS_MINIMAL_BUILD="ML-KEM";OQS_MINIMAL_BUILD="ML-DSA"></b> (Not tested)
+
+## STM32 Installation
+
+1. configure in STM32CubeMX and generate code to STM32CubeIDE project
 2. copy and rename example settings file to user_settings.h
 3. add symbol WOLFSSL_USER_SETTINGS
 4. 
 
-# Quick examples and tests on unix
+# Linux
+
+## Quick examples and tests on unix
 For a quick start, you can run the client and server like this:
 ```
 ./examples/server/server -v 4 --pqc P521_ML_KEM_1024
@@ -25,6 +46,8 @@ For a quick start, you can run the client and server like this:
 
 Copy the certificates and keys into the certs directory of wolfssl. Now you
     can run the server and client like this:
+
+## Quick examples with certificate authentication
 
 ```
 examples/server/server -v 4 -l TLS_AES_256_GCM_SHA384 \
@@ -40,7 +63,7 @@ examples/client/client -v 4 -l TLS_AES_256_GCM_SHA384 \
    --pqc P521_ML_KEM_1024
 ```      
 
-# Generation of certificates
+# Generation of certificates (on Linux distribution)
 
 ## NIST Levels
 

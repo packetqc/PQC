@@ -20,13 +20,16 @@ Post Quantum Crypto learning project
 
 [link](https://github.com/open-quantum-safe/liboqs/wiki/Customizing-liboqs/55cfed39e1027dd1d32170e6b91f557571b18d9e) can be reffered for additional details on building the library
 
-1. make dir build
+1. download git liboqs
+2. cd liboqs
+3. git checkout 0.10.1 (or latest version compatible)
+1. mkdir build
 2. cd build
 3. cmake .. -DOQS_BUILD_ONLY_LIB=ON
-4. cmake .. -DOQS_BUILD_ONLY_LIB=ON;OQS_ENABLE_KEM_KYBER=ON;OQS_ENABLE_KEM_ML_KEM=ON;OQS_ENABLE_SIG_DILITHIUM=ON;OQS_ENABLE_SIG_ML_DSA=ON
+4. cmake .. -DOQS_BUILD_ONLY_LIB=ON;OQS_MINIMAL_BUILD="OQS_ENABLE_KEM_KYBER;OQS_ENABLE_KEM_ML_KEM;OQS_ENABLE_SIG_DILITHIUM;OQS_ENABLE_SIG_ML_DSA"
 5. make
 
-Could be optimized with <b><OQS_MINIMAL_BUILD="ML-KEM";OQS_MINIMAL_BUILD="ML-DSA"></b> (Not tested)
+Could be optimized with <b>OQS_MINIMAL_BUILD="OQS_ENABLE_KEM_KYBER;OQS_ENABLE_KEM_ML_KEM;OQS_ENABLE_SIG_DILITHIUM;OQS_ENABLE_SIG_ML_DSA"</b> (Not tested)
 
 ## STM32 Installation
 

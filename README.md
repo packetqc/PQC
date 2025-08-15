@@ -1,6 +1,13 @@
 # PQC
 Post Quantum Crypto learning project
 
+# COMPLIANT
+
+|Technology|ML-DSA|ML-KEM|
+|--|--|--|
+|WolfSSL|yes|yes|
+|CMOX|yes|na|
+
 # Prerequisites
 
 1. Download wolfssl, zip and cubemx pack

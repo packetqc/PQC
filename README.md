@@ -3,10 +3,11 @@ Post Quantum Crypto learning project
 
 # COMPLIANT
 
-|Technology|ML-DSA|ML-KEM|
-|--|--|--|
-|WolfSSL|yes|yes|
-|CMOX|yes|na|
+|Technology|ML-DSA|ML-KEM|Dev only|
+|--|--|--|--|
+|WolfSSL|yes|yes|no|
+|CMOX|yes|na|no|
+|LIBOQS|yes|yes|yes|
 
 # Prerequisites
 

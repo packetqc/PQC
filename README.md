@@ -6,11 +6,11 @@ Post Quantum Crypto learning project
 
 ## Table of tests / comparison
 
-|Technology|ML-DSA|ML-KEM|Dev only|
-|--|--|--|--|
-|WolfSSL|yes|yes|no|
-|CMOX|yes|na|no|
-|LIBOQS|yes|yes|yes|
+|Technology|ML-DSA|ML-KEM|Dev only|STM32 Tested|
+|--|--|--|--|--|
+|WolfSSL|yes|yes|no|ongoing|
+|CMOX|yes|na|no|yes|
+|LIBOQS|yes|yes|yes|ongoing|
 
 ## NIST Levels
 

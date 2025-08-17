@@ -8,9 +8,9 @@ Post Quantum Crypto learning project
 
 |Technology|ML-DSA|ML-KEM|Dev only|STM32 Tested|
 |--|--|--|--|--|
-|WolfSSL|yes|yes|no|ongoing|
+|WolfSSL|yes|yes|no|yes,confirmed latest version 5.8.2|
 |CMOX|yes|na|no|yes|
-|LIBOQS|yes|yes|yes|ongoing|
+|LIBOQS|yes|yes|yes|no|
 
 ## NIST Levels
 

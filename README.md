@@ -2,6 +2,20 @@
 
 Post Quantum Crypto learning project
 
+# SIZES
+
+## ML-KEM
+
+|GRADE|KEYGEN_SEED|ENC_SEED|PRIVKEY|PUBKEY|CIPHERTEXT|SHARED_SECRET|
+|--|--|--|--|--|--|--|
+|512|64|32|1632|800|768|32|
+|768|64|32|2400|1184|1088|32|
+|1024|64|32|3168|1568|1568|32|
+
+
+## ML-DSA
+
+
 # COMPLIANT
 
 ## Table of tests / comparison

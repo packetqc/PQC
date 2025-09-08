@@ -8,11 +8,11 @@ Post Quantum Crypto learning project
 graph TD
     subgraph Alice
         direction LR
-        A[Run Key Generation] --> B{Derive `pk` and `sk`}
-        B --> C[Public Key (`pk`)]
-        B --> D[Private Key (`sk`)]
+        A[Run Key Generation] --> B{Derive pk and sk}
+        B --> C[Public Key (pk)]
+        B --> D[Private Key (sk)]
     end
-    C -- "Sends `pk` to Bob" --> Bob
+    C -- "Sends pk to Bob" --> Bob
 ```
 
 ## Encapsulation (Bob)
@@ -21,12 +21,12 @@ graph TD
 graph TD
     subgraph Bob
         direction LR
-        E[Receive `pk`] --> F[Run Encapsulation]
-        F --> G[Ciphertext (`ct`)]
-        F --> H[Shared Secret (`ss`)]
+        E[Receive pk] --> F[Run Encapsulation]
+        F --> G[Ciphertext (ct)]
+        F --> H[Shared Secret (ss)]
     end
     Alice --> E
-    G -- "Sends `ct` to Alice" --> Alice
+    G -- "Sends ct to Alice" --> Alice
 ```
 
 ## Decapsulation (Alice)
@@ -35,8 +35,8 @@ graph TD
 graph TD
     subgraph Alice
         direction LR
-        I[Receive `ct`] --> J[Run Decapsulation with `sk`]
-        J --> K[Shared Secret (`ss`)]
+        I[Receive ct] --> J[Run Decapsulation with sk]
+        J --> K[Shared Secret (ss)]
     end
     Bob --> I
 ```

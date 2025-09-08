@@ -9,8 +9,8 @@ graph TD
     subgraph Alice
         direction LR
         A[Run Key Generation] --> B{Derive pk and sk}
-        B --> C[Public Key (pk)]
-        B --> D[Private Key (sk)]
+        B --> C[Public Key \(pk\)]
+        B --> D[Private Key \(sk\)]
     end
     C -- "Sends pk to Bob" --> Bob
 ```

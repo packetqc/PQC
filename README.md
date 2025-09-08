@@ -4,7 +4,7 @@ Post Quantum Crypto learning project
 
 ## Key generation (Alice)
 
-``` mermaid
+```mermaid
 graph TD
     subgraph Alice
         direction LR
@@ -17,7 +17,7 @@ graph TD
 
 ## Encapsulation (Bob)
 
-```
+```mermaid
 graph TD
     subgraph Bob
         direction LR
@@ -30,7 +30,8 @@ graph TD
 ```
 
 ## Decapsulation (Alice)
-```
+
+```mermaid
 graph TD
     subgraph Alice
         direction LR
@@ -41,7 +42,8 @@ graph TD
 ```
 
 ## Overall
-```
+
+```mermaid
 sequenceDiagram
     participant Alice
     participant Bob
@@ -58,6 +60,7 @@ sequenceDiagram
     Alice->>Bob: Secure communication using ss
     Bob->>Alice: Secure communication using ss
 ```
+
 # SIZES
 
 ## ML-KEM

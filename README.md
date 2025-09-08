@@ -2,6 +2,9 @@
 
 Post Quantum Crypto learning project
 
+<details>
+<summary>Click to see details...</summary>
+    
 ## Key generation (Alice)
 
 ```mermaid
@@ -60,6 +63,8 @@ sequenceDiagram
     Alice->>Bob: Secure communication using ss
     Bob->>Alice: Secure communication using ss
 ```
+
+</details>
 
 # SIZES
 

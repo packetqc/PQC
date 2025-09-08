@@ -3,7 +3,7 @@
 Post Quantum Crypto learning project
 
 ## Key generation (Alice)
-```
+``` mermaid
 graph TD
     subgraph Alice
         direction LR

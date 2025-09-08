@@ -3,6 +3,7 @@
 Post Quantum Crypto learning project
 
 ## Key generation (Alice)
+
 ``` mermaid
 graph TD
     subgraph Alice
@@ -13,7 +14,9 @@ graph TD
     end
     C -- "Sends `pk` to Bob" --> Bob
 ```
+
 ## Encapsulation (Bob)
+
 ```
 graph TD
     subgraph Bob

@@ -2,6 +2,59 @@
 
 Post Quantum Crypto learning project
 
+## Key generation (Alice)
+```
+graph TD
+    subgraph Alice
+        direction LR
+        A[Run Key Generation] --> B{Derive `pk` and `sk`}
+        B --> C[Public Key (`pk`)]
+        B --> D[Private Key (`sk`)]
+    end
+    C -- "Sends `pk` to Bob" --> Bob
+```
+## Encapsulation (Bob)
+```
+graph TD
+    subgraph Bob
+        direction LR
+        E[Receive `pk`] --> F[Run Encapsulation]
+        F --> G[Ciphertext (`ct`)]
+        F --> H[Shared Secret (`ss`)]
+    end
+    Alice --> E
+    G -- "Sends `ct` to Alice" --> Alice
+```
+
+## Decapsulation (Alice)
+```
+graph TD
+    subgraph Alice
+        direction LR
+        I[Receive `ct`] --> J[Run Decapsulation with `sk`]
+        J --> K[Shared Secret (`ss`)]
+    end
+    Bob --> I
+```
+
+## Overall
+```
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>Alice: Key Generation (ML-KEM.KeyGen)
+    Alice->>Alice: Creates pk (public key) and sk (private key)
+    Alice->>Bob: Sends pk to Bob
+    Note right of Bob: Adversary sees pk
+    Bob->>Bob: Encapsulation (ML-KEM.Encaps) with pk
+    Bob->>Bob: Creates ct (ciphertext) and ss (shared secret)
+    Bob->>Alice: Sends ct to Alice
+    Note right of Alice: Adversary sees ct, cannot derive ss
+    Alice->>Alice: Decapsulation (ML-KEM.Decaps) with sk and ct
+    Alice->>Alice: Recovers ss (shared secret)
+    Alice->>Bob: Secure communication using ss
+    Bob->>Alice: Secure communication using ss
+```
 # SIZES
 
 ## ML-KEM

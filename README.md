@@ -95,15 +95,15 @@ sequenceDiagram
 
 |Levels|Algorithm at generation|
 |--|--|
-|Dilithium NIST Level 2|algorithm mldsa44|
-|Dilithium NIST Level 3|algorithm mldsa65|
-|Dilithium NIST Level 5|algorithm mldsa87|
+|Level 2|algorithm mldsa44|
+|Level 3|algorithm mldsa65|
+|Level 5|algorithm mldsa87|
 
-# References
-
-|Technology|URLs|
-|--|--|
-|WolfSSL github|[link](https://github.com/wolfSSL)|
+|Levels|Parameter Set|Equivalent Security Strength|Performance|Usage|
+|--|--|--|--|--|
+|Level 1	|ML-KEM-512	|Equivalent to AES-128	|Offers the fastest performance	Suitable for applications where performance is the priority and a moderate level of security is sufficient.|
+|Level 3	|ML-KEM-768	|Equivalent to AES-192	|Provides a balanced trade-off between security and performance	Recommended for most general-purpose applications.|
+|Level 5	|ML-KEM-1024	|Equivalent to AES-256	|Offers the highest level of security	|Intended for protecting highly sensitive information or adhering to strict security directives.|
 
 # WolfSSL
 
@@ -144,6 +144,12 @@ examples/client/client -v 4 -l TLS_AES_256_GCM_SHA384 \
    -k certs/mldsa87_entity_key.pem \
    --pqc P521_ML_KEM_1024
 ```      
+
+### References
+
+|Technology|URLs|
+|--|--|
+|WolfSSL github|[link](https://github.com/wolfSSL)|
 
 </details>
 

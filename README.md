@@ -103,9 +103,9 @@ sequenceDiagram
 
 |Levels|Parameter Set|Equivalent Security Strength|Performance|Usage|
 |--|--|--|--|--|
-|Level 1	|ML-KEM-512	|Equivalent to AES-128	|Offers the fastest performance	|Suitable for applications where performance is the priority and a moderate level of security is sufficient.|
-|Level 3	|ML-KEM-768	|Equivalent to AES-192	|Provides a balanced trade-off between security and performance	|Recommended for most general-purpose applications.|
-|Level 5	|ML-KEM-1024	|Equivalent to AES-256	|Offers the highest level of security	|Intended for protecting highly sensitive information or adhering to strict security directives.|
+|Level 1|ML-KEM-512|Equivalent to AES-128|Offers the fastest performance|Suitable for applications where performance is the priority and a moderate level of security is sufficient.|
+|Level 3|ML-KEM-768|Equivalent to AES-192|Provides a balanced trade-off between security and performance|Recommended for most general-purpose applications.|
+|Level 5|ML-KEM-1024|Equivalent to AES-256|Offers the highest level of security|Intended for protecting highly sensitive information or adhering to strict security directives.|
 
 # WolfSSL
 

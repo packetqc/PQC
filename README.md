@@ -91,13 +91,15 @@ sequenceDiagram
 
 ## NIST Levels
 
-### Digital Signing Algo
+### Digital Signing Algo (dillitium)
 
 |Levels|Algorithm at generation|
 |--|--|
 |Level 2|algorithm mldsa44|
 |Level 3|algorithm mldsa65|
 |Level 5|algorithm mldsa87|
+
+### Key Exchange Mecanism (kyber)
 
 |Levels|Parameter Set|Equivalent Security Strength|Performance|Usage|
 |--|--|--|--|--|

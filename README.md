@@ -1,64 +1,24 @@
 # PQC Learning project
 
 Post Quantum Crypto learning project
-   
-## Key generation (Alice)
 
-```mermaid
-graph TD
-    subgraph Alice
-        direction LR
-        A[Run Key Generation] --> B{Derive pk and sk}
-        B --> C[Public Key pk]
-        B --> D[Private Key sk]
-    end
-    C -- "Sends pk to Bob" --> Bob
-```
+## Communication from multiple network devices on a local area network
 
-## Encapsulation (Bob)
+Next diagram shows the PQC key exchange mechanism been involved upon UDP broadcast from a node on the network.
 
-```mermaid
-graph TD
-    subgraph Bob
-        direction LR
-        E[Receive pk] --> F[Run Encapsulation]
-        F --> G[Ciphertext ct]
-        F --> H[Shared Secret ss]
-    end
-    Alice --> E
-    G -- "Sends ct to Alice" --> Alice
-```
-
-## Decapsulation (Alice)
-
-```mermaid
-graph TD
-    subgraph Alice
-        direction LR
-        I[Receive ct] --> J[Run Decapsulation with sk]
-        J --> K[Shared Secret ss]
-    end
-    Bob --> I
-```
-
-## Overall
-
-```mermaid
-sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->>Alice: Key Generation (ML-KEM.KeyGen)
-    Alice->>Alice: Creates pk (public key) and sk (private key)
-    Alice->>Bob: Sends pk to Bob
-    Note right of Bob: Adversary sees pk
-    Bob->>Bob: Encapsulation (ML-KEM.Encaps) with pk
-    Bob->>Bob: Creates ct (ciphertext) and ss (shared secret)
-    Bob->>Alice: Sends ct to Alice
-    Note right of Alice: Adversary sees ct, cannot derive ss
-    Alice->>Alice: Decapsulation (ML-KEM.Decaps) with sk and ct
-    Alice->>Alice: Recovers ss (shared secret)
-    Alice->>Bob: Secure communication using ss
-    Bob->>Alice: Secure communication using ss
+```mermaid  
+  sequenceDiagram  
+  participant N1 as Node on LAN  
+  participant N2 as Node on LAN  
+  N1->>N2: UDP Broadcast Announce  
+  N2->>N1: "TCP Unicast Announce includes public key and empty cypher text (reserved for later dev)"
+  N1->>N1: "Encapsulate cypher text with received public key and create shared key to store in secret key"  
+  N1->>N2: "PQC initialization includes public key and cypher text encoded with remote public key received"  
+  N2->>N2: "Decapsulate cypher text with private key and create decrypted shared key to store in secret key"  
+  N1->>N1: "PQC secret key registration"
+  N2->>N2: "PQC secret key registration"
+  N1->>N2: "Alternative data communication clear text token, cypher ecc-aes token, cypher pqc-aes token in unsecured UDP"  
+  N2->>N1: "Alternative data communication response clear text token, cypher ecc-aes token, cypher pqc-aes token in unsecured UDP"  
 ```
 
 # SIZES
@@ -269,3 +229,65 @@ extendedKeyUsage       = critical, serverAuth,clientAuth
 basicConstraints       = critical, CA:false
 ```
 </details>
+
+# PQC ML-KEM in a nutshell
+
+## Key generation (Alice)
+
+```mermaid
+graph TD
+    subgraph Alice
+        direction LR
+        A[Run Key Generation] --> B{Derive pk and sk}
+        B --> C[Public Key pk]
+        B --> D[Private Key sk]
+    end
+    C -- "Sends pk to Bob" --> Bob
+```
+
+## Encapsulation (Bob)
+
+```mermaid
+graph TD
+    subgraph Bob
+        direction LR
+        E[Receive pk] --> F[Run Encapsulation]
+        F --> G[Ciphertext ct]
+        F --> H[Shared Secret ss]
+    end
+    Alice --> E
+    G -- "Sends ct to Alice" --> Alice
+```
+
+## Decapsulation (Alice)
+
+```mermaid
+graph TD
+    subgraph Alice
+        direction LR
+        I[Receive ct] --> J[Run Decapsulation with sk]
+        J --> K[Shared Secret ss]
+    end
+    Bob --> I
+```
+
+## Overall
+
+```mermaid
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>Alice: Key Generation (ML-KEM.KeyGen)
+    Alice->>Alice: Creates pk (public key) and sk (private key)
+    Alice->>Bob: Sends pk to Bob
+    Note right of Bob: Adversary sees pk
+    Bob->>Bob: Encapsulation (ML-KEM.Encaps) with pk
+    Bob->>Bob: Creates ct (ciphertext) and ss (shared secret)
+    Bob->>Alice: Sends ct to Alice
+    Note right of Alice: Adversary sees ct, cannot derive ss
+    Alice->>Alice: Decapsulation (ML-KEM.Decaps) with sk and ct
+    Alice->>Alice: Recovers ss (shared secret)
+    Alice->>Bob: Secure communication using ss
+    Bob->>Alice: Secure communication using ss
+```
+

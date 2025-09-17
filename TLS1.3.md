@@ -73,8 +73,8 @@ Generate the pqc certificates and keys
 convert to c with 'xxd -i'
 
   ```
-      xxd -i your_certificate.crt > certificate_data.h
-      xxd -i your_certificate_key.crt > certificate_data.h
+      xxd -i your_certificate.crt >> certificate_data.h
+      xxd -i your_certificate_key.crt >> certificate_data.h
   ```
 
 ## STM32 Compilation and code

@@ -61,20 +61,22 @@ basicConstraints       = critical, CA:false
 Generate the pqc certificates and keys
 
 ```
- openssl genpkey -algorithm mldsa44 -outform pem -out mldsa44_root_key.pem
- openssl genpkey -algorithm mldsa44 -outform pem -out mldsa44_entity_key.pem
- openssl req -x509 -config root.conf -extensions ca_extensions -days 1095 -set_serial 20 -key mldsa44_root_key.pem -out mldsa44_root_cert.pem
- openssl req -new -config entity.conf -key mldsa44_entity_key.pem -out mldsa44_entity_req.pem
- openssl x509 -req -in mldsa44_entity_req.pem -CA mldsa44_root_cert.pem -CAkey mldsa44_root_key.pem -extfile entity.conf -extensions x509v3_extensions -days 1095 -set_serial 21 -out mldsa44_entity_cert.pem
- openssl verify -no-CApath -check_ss_sig -CAfile mldsa44_root_cert.pem mldsa44_entity_cert.pem
+ openssl genpkey -algorithm mldsa87 -outform der -out mldsa87_root_key.der
+ openssl genpkey -algorithm mldsa87 -outform der -out mldsa87_entity_key.der
+ openssl req -x509 -config root.conf -extensions ca_extensions -days 1095 -set_serial 20 -key mldsa87_root_key.der -out mldsa87_root_cert.der
+ openssl req -new -config entity.conf -key mldsa87_entity_key.der -out mldsa87_entity_req.der
+ openssl x509 -req -in mldsa87_entity_req.der -CA mldsa87_root_cert.der -CAkey mldsa87_root_key.der -extfile entity.conf -extensions x509v3_extensions -days 1095 -set_serial 21 -out mldsa87_entity_cert.der
+ openssl verify -no-CApath -check_ss_sig -CAfile mldsa87_root_cert.der mldsa87_entity_cert.der
 ```
 
 ### Convert Certificates to C code
 convert to c with 'xxd -i'
 
   ```
-      xxd -i your_certificate.crt >> certificate_data.h
-      xxd -i your_certificate_key.crt >> certificate_data.h
+      xxd -i mldsa87_root_cert.der >> certificate_data.h
+      xxd -i mldsa87_root_key.der >> certificate_data.h
+      xxd -i mldsa87_entity_cert.der >> certificate_data.h
+      xxd -i mldsa87_entity_key.der >> certificate_data.h
   ```
 
 ## STM32 Compilation and code

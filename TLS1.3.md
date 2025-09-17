@@ -96,8 +96,6 @@ When Client Certificate Authentication is enabled, the TLS Server will request a
 - nxsecuretlssessionclientverifyenable (to enable client authentication. coded before calling nx_secure_tls_session_start)
 - nxsecuretlssessionclientverifydisable 
 
-</details>
-
 ### cryptographic method
 NetX Duo Secure TLS provides the following encryption methods: AES RSA NULL
 NetX Duo Secure TLS provides the following authentication methods: HMAC-MD5 HMAC-SHA1 HMAC-SHA256
@@ -108,6 +106,9 @@ nx_crypto_algorithm: This field identifies the algorithm described in the variab
 - crypto_init_function
 - crypto_cleanup_function
 - crypto_operation_function : This is the routine that performs the actual encryption, decryption, and authentication services like NX_CRYPTO_ENCRYPT, NX_CRYPTO_DECRYPT, NX_CRYPTO_AUTHENTICATE, NX_CRYPTO_VERIFY
+
+
+</details>
 
 
 # References

@@ -14,7 +14,8 @@
 ## STM32 Compilation and code
 <details>
 <summary>click here to see details...</summary>
-  
+
+- copy repository nx_secure folder to the project (cannot enable from cubemx with crypto prerequisite since using cmox stm32 pqc, nx_secure not ready yet)
 - NX_SECURE_TLS_ENABLE_TLS_1_3 must be defined globally
 - If no key is supplied, the value NX_SECURE_X509_KEY_TYPE_NONE (0x00). Other values for keys are NX_SECURE_X509_KEY_TYPE_RSA_PKCS1_DER (0x01 RSA, PKCS#1) and NX_SECURE_X509_KEY_TYPE_EC_DER (0x02 ECDSA, RFC 5915).
 

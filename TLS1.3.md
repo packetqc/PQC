@@ -7,6 +7,10 @@
 - export der format client and server certificates ( and private keys if RSA) but ED
 - convert to c with 'xxd -i'
 
+  ```
+      xxd -i your_certificate.crt > certificate_data.h
+  ```
+
 ## STM32 Compilation and code
 <details>
 <summary>click here to see details...</summary>

@@ -4,7 +4,7 @@
 - Using xca to create ed ca, server and client certificates.
 - Add pqc extension with openssl 3.5 or later. [doc](- https://github.com/packetqc/PQC#using-openssl-350-includes-pqc-oqs-not-required-anymore)
 - export der format CA certificate and private key (DER-Encoded PKCS#1)
-- export der format client and server certificates
+- export der format client and server certificates and private keys
 - convert to c with xdd (or xxd.. tbc name of utility)
 
 ## STM32 Compilation

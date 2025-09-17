@@ -1,6 +1,6 @@
 # PQC Learning project
 
-Post Quantum Crypto learning project
+Post Quantum Crypto learning project. For TLS1.3 documentation, please see [here](https://github.com/packetqc/PQC/blob/master/TLS1.3.md)
 
 ## Communication from multiple network devices on a local area network
 

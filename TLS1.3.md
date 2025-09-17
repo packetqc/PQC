@@ -1,14 +1,80 @@
 # NETXDUO TLS 1.3 for PQC
 
 ## X509 Certificate
+
+### Using XCA
 - Using xca to create ed ca, server and client certificates.
 - Add pqc extension with openssl 3.5 or later. [doc](- https://github.com/packetqc/PQC#using-openssl-350-includes-pqc-oqs-not-required-anymore).
 - export der format CA certificate ( and private key PKCS#1 for RSA, RFC 5915 for ECC, if private key is required ). For certificates that identify a device, the associated private key must be loaded along with the certificate.
 - export der format client and server certificates ( and private keys if RSA) but ED
-- convert to c with 'xxd -i'
+
+### Using OpenSSL (supports PQC, recommended**)
+
+root.conf file:
+
+```
+[ req ]
+prompt                 = no
+distinguished_name     = req_distinguished_name
+
+[ req_distinguished_name ]
+C                      = CA
+ST                     = QC
+L                      = QC
+O                      = Labs
+OU                     = Labs
+CN                     = Root Certificate
+emailAddress           = netadmin@pqc.ca
+
+[ ca_extensions ]
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid:always,issuer:always
+keyUsage               = critical, keyCertSign
+basicConstraints       = critical, CA:true
+```
+
+file entity.conf:
+
+```
+[ req ]
+prompt                 = no
+distinguished_name     = req_distinguished_name
+
+[ req_distinguished_name ]
+C                      = CA
+ST                     = QC
+L                      = QC
+O                      = Labs
+OU                     = Labs
+CN                     = Entity Certificate
+emailAddress           = netadmin@pqc.ca
+
+[ x509v3_extensions ]
+subjectAltName = IP:127.0.0.1
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid:always,issuer:always
+keyUsage               = critical, digitalSignature
+extendedKeyUsage       = critical, serverAuth,clientAuth
+basicConstraints       = critical, CA:false
+```
+
+Generate the pqc certificates and keys
+
+```
+ openssl genpkey -algorithm mldsa44 -outform pem -out mldsa44_root_key.pem
+ openssl genpkey -algorithm mldsa44 -outform pem -out mldsa44_entity_key.pem
+ openssl req -x509 -config root.conf -extensions ca_extensions -days 1095 -set_serial 20 -key mldsa44_root_key.pem -out mldsa44_root_cert.pem
+ openssl req -new -config entity.conf -key mldsa44_entity_key.pem -out mldsa44_entity_req.pem
+ openssl x509 -req -in mldsa44_entity_req.pem -CA mldsa44_root_cert.pem -CAkey mldsa44_root_key.pem -extfile entity.conf -extensions x509v3_extensions -days 1095 -set_serial 21 -out mldsa44_entity_cert.pem
+ openssl verify -no-CApath -check_ss_sig -CAfile mldsa44_root_cert.pem mldsa44_entity_cert.pem
+```
+
+### Convert Certificates to C code
+convert to c with 'xxd -i'
 
   ```
       xxd -i your_certificate.crt > certificate_data.h
+      xxd -i your_certificate_key.crt > certificate_data.h
   ```
 
 ## STM32 Compilation and code

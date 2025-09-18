@@ -85,11 +85,33 @@ convert to c with 'xxd -i'
 </details>
 
 ## STM32 Compilation and code
+
 <details>
+
 <summary>click here to see details...</summary>
 
 - NX_SECURE_TLS_ENABLE_TLS_1_3 must be defined globally (use CubeMX and enable crypto prerequisite for x509 validations)
 - If no key is supplied, the value NX_SECURE_X509_KEY_TYPE_NONE (0x00). Other values for keys are NX_SECURE_X509_KEY_TYPE_RSA_PKCS1_DER (0x01 RSA, PKCS#1) and NX_SECURE_X509_KEY_TYPE_EC_DER (0x02 ECDSA, RFC 5915).
+
+### store X509 certificates and keys to internal flash memory
+
+1) C or H code file certificate and keys modification (created from xxd procedure). Add next code to certificates and to keys definitions:
+
+```
+__attribute__((section(".certificates")))
+```
+
+1) Linker script file modification:
+
+```
+/* The custom section for your certificates */
+  .certificates :
+  {
+    . = ALIGN(4);
+    KEEP(*(.certificates))
+  } > FLASH
+```
+
 
 ### server initialization
 - nx_secure_x509_certificate_initialize

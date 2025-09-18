@@ -101,17 +101,16 @@ convert to c with 'xxd -i'
 __attribute__((section(".certificates")))
 ```
 
-1) Linker script file modification:
+2) Linker script file modification:
 
 ```
-/* The custom section for your certificates */
+/* The custom section for your certificates between bss and _user_heap_stack sections */
   .certificates :
   {
     . = ALIGN(4);
     KEEP(*(.certificates))
   } > FLASH
 ```
-
 
 ### server initialization
 - nx_secure_x509_certificate_initialize

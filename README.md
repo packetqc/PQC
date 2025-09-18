@@ -67,6 +67,66 @@ Next diagram shows the PQC key exchange mechanism been involved upon UDP broadca
 |Level 3|ML-KEM-768|Equivalent to AES-192|Provides a balanced trade-off between security and performance|Recommended for most general-purpose applications.|
 |Level 5|ML-KEM-1024|Equivalent to AES-256|Offers the highest level of security|Intended for protecting highly sensitive information or adhering to strict security directives.|
 
+# PQC ML-KEM in a nutshell
+
+## Key generation (Alice)
+
+```mermaid
+graph TD
+    subgraph Alice
+        direction LR
+        A[Run Key Generation] --> B{Derive pk and sk}
+        B --> C[Public Key pk]
+        B --> D[Private Key sk]
+    end
+    C -- "Sends pk to Bob" --> Bob
+```
+
+## Encapsulation (Bob)
+
+```mermaid
+graph TD
+    subgraph Bob
+        direction LR
+        E[Receive pk] --> F[Run Encapsulation]
+        F --> G[Ciphertext ct]
+        F --> H[Shared Secret ss]
+    end
+    Alice --> E
+    G -- "Sends ct to Alice" --> Alice
+```
+
+## Decapsulation (Alice)
+
+```mermaid
+graph TD
+    subgraph Alice
+        direction LR
+        I[Receive ct] --> J[Run Decapsulation with sk]
+        J --> K[Shared Secret ss]
+    end
+    Bob --> I
+```
+
+## Overall
+
+```mermaid
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>Alice: Key Generation (ML-KEM.KeyGen)
+    Alice->>Alice: Creates pk (public key) and sk (private key)
+    Alice->>Bob: Sends pk to Bob
+    Note right of Bob: Adversary sees pk
+    Bob->>Bob: Encapsulation (ML-KEM.Encaps) with pk
+    Bob->>Bob: Creates ct (ciphertext) and ss (shared secret)
+    Bob->>Alice: Sends ct to Alice
+    Note right of Alice: Adversary sees ct, cannot derive ss
+    Alice->>Alice: Decapsulation (ML-KEM.Decaps) with sk and ct
+    Alice->>Alice: Recovers ss (shared secret)
+    Alice->>Bob: Secure communication using ss
+    Bob->>Alice: Secure communication using ss
+
 # WolfSSL
 
 <details>
@@ -230,64 +290,6 @@ basicConstraints       = critical, CA:false
 ```
 </details>
 
-# PQC ML-KEM in a nutshell
 
-## Key generation (Alice)
-
-```mermaid
-graph TD
-    subgraph Alice
-        direction LR
-        A[Run Key Generation] --> B{Derive pk and sk}
-        B --> C[Public Key pk]
-        B --> D[Private Key sk]
-    end
-    C -- "Sends pk to Bob" --> Bob
-```
-
-## Encapsulation (Bob)
-
-```mermaid
-graph TD
-    subgraph Bob
-        direction LR
-        E[Receive pk] --> F[Run Encapsulation]
-        F --> G[Ciphertext ct]
-        F --> H[Shared Secret ss]
-    end
-    Alice --> E
-    G -- "Sends ct to Alice" --> Alice
-```
-
-## Decapsulation (Alice)
-
-```mermaid
-graph TD
-    subgraph Alice
-        direction LR
-        I[Receive ct] --> J[Run Decapsulation with sk]
-        J --> K[Shared Secret ss]
-    end
-    Bob --> I
-```
-
-## Overall
-
-```mermaid
-sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->>Alice: Key Generation (ML-KEM.KeyGen)
-    Alice->>Alice: Creates pk (public key) and sk (private key)
-    Alice->>Bob: Sends pk to Bob
-    Note right of Bob: Adversary sees pk
-    Bob->>Bob: Encapsulation (ML-KEM.Encaps) with pk
-    Bob->>Bob: Creates ct (ciphertext) and ss (shared secret)
-    Bob->>Alice: Sends ct to Alice
-    Note right of Alice: Adversary sees ct, cannot derive ss
-    Alice->>Alice: Decapsulation (ML-KEM.Decaps) with sk and ct
-    Alice->>Alice: Recovers ss (shared secret)
-    Alice->>Bob: Secure communication using ss
-    Bob->>Alice: Secure communication using ss
 ```
 

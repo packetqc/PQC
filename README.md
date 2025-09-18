@@ -126,22 +126,25 @@ sequenceDiagram
     Alice->>Alice: Recovers ss (shared secret)
     Alice->>Bob: Secure communication using ss
     Bob->>Alice: Secure communication using ss
+```
 
-# WolfSSL
+# NOTES
+
+## WolfSSL
 
 <details>
 
 <summary>Click to see details</summary>
 
-## STM32 Installation
+### STM32 Installation
 
 1. configure in STM32CubeMX and generate code to STM32CubeIDE project
 2. copy and rename example settings file to user_settings.h
 3. add symbol WOLFSSL_USER_SETTINGS to the project settings
 
-## WolfSSL Linux
+### WolfSSL Linux
 
-### Quick examples and tests on unix
+#### Quick examples and tests on unix
 For a quick start, you can run the client and server like this:
 ```
 ./examples/server/server -v 4 --pqc P521_ML_KEM_1024
@@ -151,7 +154,7 @@ For a quick start, you can run the client and server like this:
 Copy the certificates and keys into the certs directory of wolfssl. Now you
     can run the server and client like this:
 
-### Quick examples with certificate authentication
+#### Quick examples with certificate authentication
 
 ```
 examples/server/server -v 4 -l TLS_AES_256_GCM_SHA384 \
@@ -167,7 +170,7 @@ examples/client/client -v 4 -l TLS_AES_256_GCM_SHA384 \
    --pqc P521_ML_KEM_1024
 ```      
 
-### References
+#### References
 
 |Technology|URLs|
 |--|--|
@@ -175,7 +178,7 @@ examples/client/client -v 4 -l TLS_AES_256_GCM_SHA384 \
 
 </details>
 
-# CMOX
+## CMOX
 
 <details>
 
@@ -183,13 +186,13 @@ examples/client/client -v 4 -l TLS_AES_256_GCM_SHA384 \
 
 </details>
 
-# LIBOQS
+## LIBOQS
 
 <details>
 
 <summary>Click to see details</summary>
 
-## Prerequisites
+### Prerequisites
 
 1. Download wolfssl, zip and cubemx pack
 2. Openssl patched for OQS Provider (required to gen pqc certificate) [link](https://github.com/wolfSSL/osp/blob/master/oqs/README.md)
@@ -198,14 +201,14 @@ examples/client/client -v 4 -l TLS_AES_256_GCM_SHA384 \
 5. For unix install of wolfssl, ./configure --enable-kyber --enable-dilithium
 6. Liboqs static library 
 
-## Procedure for embedded
+### Procedure for embedded
 
 1. create project with STM32CubeMX enabling wolfssl software package and PQC feature
 2. build and import liboqs to STM32CubeIDE
 
-## Embedded
+### Embedded
 
-### LIBOQS build (liboqs is for test and dev only)
+#### LIBOQS build (liboqs is for test and dev only)
 
 [link](https://github.com/open-quantum-safe/liboqs/wiki/Customizing-liboqs/55cfed39e1027dd1d32170e6b91f557571b18d9e) can be reffered for additional details on building the library
 
@@ -223,13 +226,13 @@ Could be optimized with <b>OQS_MINIMAL_BUILD="OQS_ENABLE_KEM_KYBER;OQS_ENABLE_KE
 
 </details>
 
-# Generation of PQC certificates (on Linux distribution)
+## Generation of PQC certificates (on Linux distribution)
 
 <details>
 
 <summary>Click to see details</summary>
 
-## Using OpenSSL 3.5.0 (includes pqc, oqs not required anymore)
+### Using OpenSSL 3.5.0 (includes pqc, oqs not required anymore)
 ```
  openssl genpkey -algorithm mldsa44 -outform pem -out mldsa44_root_key.pem
  openssl genpkey -algorithm mldsa44 -outform pem -out mldsa44_entity_key.pem
@@ -241,9 +244,9 @@ Could be optimized with <b>OQS_MINIMAL_BUILD="OQS_ENABLE_KEM_KYBER;OQS_ENABLE_KE
 
 note: repeat for mldsa65 and mldsa87
 
-## Example of certificate configuration files
+### Example of certificate configuration files
 
-### Content of root.conf
+#### Content of root.conf
 ```
 [ req ]
 prompt                 = no
@@ -265,7 +268,7 @@ keyUsage               = critical, keyCertSign
 basicConstraints       = critical, CA:true
 ```
 
-### Content of an entity.conf
+#### Content of an entity.conf
 ```
 [ req ]
 prompt                 = no
@@ -289,7 +292,4 @@ extendedKeyUsage       = critical, serverAuth,clientAuth
 basicConstraints       = critical, CA:false
 ```
 </details>
-
-
-```
 

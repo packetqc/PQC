@@ -1,6 +1,9 @@
 # NETXDUO TLS 1.3 for PQC
 
 ## X509 Certificate
+<details>
+
+<summary>Click here for details...</summary>
 
 ### Using XCA
 - Using xca to create ed ca, server and client certificates.
@@ -78,6 +81,8 @@ convert to c with 'xxd -i'
       xxd -i mldsa87_entity_cert.der >> certificate_data.h
       xxd -i mldsa87_entity_key.der >> certificate_data.h
   ```
+
+</details>
 
 ## STM32 Compilation and code
 <details>

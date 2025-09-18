@@ -39,6 +39,15 @@ Next diagram shows the PQC key exchange mechanism been involved upon UDP broadca
 |65|268|32|32|4032|1952|3309|
 |87|268|32|32|4896|2592|4627|
 
+## X509 Certificates and Keys size generated
+
+|Asset|Size in Bytes (unsigned char) ML-DSA87|
+|--|--|
+|CA Certificate|10658|
+|CA Private key|4962|
+|Entity Certificate|10727|
+|Entity Private key|4962|
+
 # COMPLIANT
 
 ## Table of tests / comparison

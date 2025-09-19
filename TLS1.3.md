@@ -210,5 +210,9 @@ nx_crypto_algorithm: This field identifies the algorithm described in the variab
 
 
 # References
+
 [github threadx netxduo tls 1.3](https://github.com/eclipse-threadx/rtos-docs/blob/main/rtos-docs/netx-duo/netx-duo-secure-tls/chapter3.md)
+
 [X.509 Section 9.8 extensions to enable hybrid certificates](https://www.bouncycastle.org/resources/preparing-for-the-migration-to-post-quantum-public-key-algorithms-with-hybrid-certificates/)
+
+[SourceVu NX_SECURE_X509_CERT structure and api](https://sourcevu.sysprogs.com/stm32/Libraries/netxduo/symbols/NX_SECURE_X509_CERT)
